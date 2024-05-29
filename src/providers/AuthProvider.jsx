@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
                     if (res.data.token) {
                         console.log(res)
                         localStorage.setItem('access-token', res.data.token)
+                        setLoading(false);
                     }
                     
                 })
@@ -58,8 +59,9 @@ const AuthProvider = ({ children }) => {
             else {
                 // remove token from ls
                 localStorage.removeItem('access-token');
+                setLoading(false);
             }
-            setLoading(false);
+            
         });
         return () => {
             return unsubscribe();
